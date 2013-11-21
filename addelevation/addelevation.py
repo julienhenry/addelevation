@@ -19,10 +19,8 @@ import urllib
 import sys
 from optparse import OptionParser
 
-def usage():
-    print "Usage : python addelevation.py <filename>.gpx"
-
-parser = OptionParser()
+use = "usage: %prog [options] <GPX file>"
+parser = OptionParser(usage=use, version="%prog 1.0")
 parser.add_option("-o", "--output", dest="outputfile", default="output.gpx",
                   help="name of the output file", metavar="FILE")
 parser.add_option("-v", "--verbose",
@@ -34,9 +32,7 @@ parser.add_option("-v", "--verbose",
 if len(args) == 1 :
     filename = args[0]
 else:
-    print "wrong or missing arguments"
-    usage()
-    sys.exit(1)
+    parser.error("wrong or missing arguments")
 
 outputfile=options.outputfile
 
